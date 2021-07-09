@@ -1,25 +1,23 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './components/home';
+import NoPageFound from './components/noPageFound';
 import './App.css';
 
-function App() {
+const App = () => {
+  // disable loader
+  const Loader = document.getElementById('loader');
+  if (Loader) Loader.style.display = 'none';
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact name="home" path="/" component={Home} />
+        <Route exact name="sticker" path="/sticker" component={Home} />
+        <Route exact path="/translate" component={Home} />
+        <Route component={NoPageFound} />
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
